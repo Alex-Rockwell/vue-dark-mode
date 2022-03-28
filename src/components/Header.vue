@@ -2,6 +2,8 @@
   <div>
     <header>
       <h1>{{mode}} Mode</h1>
+
+      <Toggle :mode="mode"/>
       
       <nav>
         <div class="nav-link">Home</div>
@@ -14,14 +16,16 @@
 </template>
 
 <script>
+import Toggle from "./Toggle.vue";
   export default {
     props: {
-      mode: {
-        type: String,
-        default: 'light'
-      },
+        mode: {
+            type: String,
+            default: "light"
+        },
     },
-  }
+    components: { Toggle }
+}
 </script>
 
 <style scoped>
@@ -30,7 +34,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 25px;
+    padding-left: 20px;
     height: 60px;
     background-color: #c3c3c3;
     color: rgb(116, 116, 116);
@@ -40,6 +44,9 @@
     font-size: 32px;
     text-transform: uppercase;
     font-weight: 900;
+  }
+  .dark header {
+    background-color: #0a0f14;
   }
   nav {
     display: flex;
@@ -55,5 +62,8 @@
   .nav-link:hover {
     cursor: pointer;
     background-color: #b0b0b0;
+  }
+  .dark .nav-link:hover {
+    background-color: #1f2841;
   }
 </style>
