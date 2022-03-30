@@ -1,18 +1,33 @@
 <template>
   <div class="app" :class="mode">
-    <Header :mode="mode"/>
+    <Header :mode="mode" @toggle="toggle" />
+    <Content :mode="mode"/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-  export default {
-  components: { Header },
-    data() {
-      return {
-        mode: 'light'
-      }
-    },
+import Content from './components/Content.vue'
+    export default {
+    components: { Header, Content },
+      data() {
+        return {
+          mode: 'light'
+        }
+      },
+      mounted() {
+        window.addEventListener('keyup', this.keyPress)
+      },
+      methods: {
+        keyPress(e) {
+          if (e.key === 't') {
+            this.toggle()
+          }
+        },
+        toggle() {
+            this.mode = (this.mode === 'light') ? 'dark' : 'light'
+        },
+      },
   }
 </script>
 
@@ -27,6 +42,7 @@ import Header from './components/Header.vue'
     width: 100vw;
     min-height: 100vh;
     background-color: #f3f3f3;
+    transition: background-color .6s ease;
   }
   .dark {
     background-color: #15202B;

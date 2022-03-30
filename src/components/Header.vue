@@ -2,8 +2,7 @@
   <div>
     <header>
       <h1>{{mode}} Mode</h1>
-
-      <Toggle :mode="mode"/>
+      <Toggle :mode="mode" @toggle="$emit('toggle')"/>
       
       <nav>
         <div class="nav-link">Home</div>
@@ -32,26 +31,29 @@ import Toggle from "./Toggle.vue";
   header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding-left: 20px;
     height: 60px;
-    background-color: #c3c3c3;
-    color: rgb(116, 116, 116);
-    transition:  background-color .3s ease-in;
+    background-color: #dadada;
+    color: rgb(29, 29, 29);
+    transition:  background-color .6s ease-in;
   }
   header h1 {
     font-size: 32px;
     text-transform: uppercase;
     font-weight: 900;
+    margin-right: 20px;
   }
   .dark header {
     background-color: #0a0f14;
+    color: #fff;
   }
   nav {
     display: flex;
     align-items: center;
     flex-direction: row;
+    margin-left: auto;
   }
   .nav-link {
     display: flex;
@@ -64,6 +66,10 @@ import Toggle from "./Toggle.vue";
     background-color: #b0b0b0;
   }
   .dark .nav-link:hover {
-    background-color: #1f2841;
+    background-color: #829ce4;
   }
+  .toggler {
+    margin-right: auto;
+  }
+
 </style>
