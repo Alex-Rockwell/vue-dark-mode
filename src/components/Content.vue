@@ -18,14 +18,12 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      mode: {
-        type: Boolean
-      },
-    },
-  }
+<script setup>
+  import { useTheme } from '../stores/useStore';
+  import { storeToRefs } from 'pinia';
+
+  const store = useTheme()
+  const {mode} = storeToRefs(store)
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="app" :class="mode">
-    <Header :mode="mode" @toggle="toggle" />
+    <Header :mode="mode" @toggle="toggle()" />
     <Content :mode="mode"/>
   </div>
 </template>
@@ -10,25 +10,23 @@ import Header from './components/Header.vue'
 import Content from './components/Content.vue'
     export default {
     components: { Header, Content },
-      data() {
-        return {
-          mode: 'light'
-        }
-      },
-      mounted() {
-        window.addEventListener('keyup', this.keyPress)
-      },
-      methods: {
-        keyPress(e) {
-          if (e.key === 't') {
-            this.toggle()
-          }
-        },
-        toggle() {
-            this.mode = (this.mode === 'light') ? 'dark' : 'light'
-        },
-      },
   }
+</script>
+
+<script setup>
+  import { useTheme } from './stores/useStore';
+  import { storeToRefs } from 'pinia'
+  import { onMounted } from 'vue-demi';
+
+  const store = useTheme()
+  const {mode} = storeToRefs(store)
+  const {keyPress} = store
+  const {toggle} = store
+
+  onMounted(() => {
+    window.addEventListener('keyup', keyPress)
+  })
+
 </script>
 
 <style scoped>
@@ -45,7 +43,7 @@ import Content from './components/Content.vue'
     transition: background-color .6s ease;
   }
   .dark {
-    background-color: #15202B;
+    background-color: #30373f;
     color: #f3f3f3;
   }
 </style>

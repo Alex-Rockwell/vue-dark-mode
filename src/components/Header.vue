@@ -14,17 +14,13 @@
   </div>
 </template>
 
-<script>
-import Toggle from "./Toggle.vue";
-  export default {
-    props: {
-        mode: {
-            type: String,
-            default: "light"
-        },
-    },
-    components: { Toggle }
-}
+<script setup>
+  import Toggle from "./Toggle.vue";
+  import { useTheme } from '../stores/useStore';
+  import { storeToRefs } from 'pinia';
+
+  const store = useTheme()
+  const {mode} = storeToRefs(store)
 </script>
 
 <style scoped>

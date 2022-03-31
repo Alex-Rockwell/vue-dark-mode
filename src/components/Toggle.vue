@@ -4,22 +4,21 @@
       <input 
         type="checkbox" 
         :checked="(mode === 'dark') ? true : false"
-        @change="$emit('toggle')"
+        @change="toggle"
       >
       <span class="toggler round"></span>
     </label>
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      mode: {
-        type: String
-      },
-    },
+<script setup>
+  import { useTheme } from '../stores/useStore';
+  import { storeToRefs } from 'pinia';
 
-  }
+  const store = useTheme()
+  const {mode} = storeToRefs(store)
+  const {toggle} = store
+
 </script>
 
 <style>
